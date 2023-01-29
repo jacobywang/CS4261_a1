@@ -30,7 +30,7 @@ struct LoginView: View {
                 }
                 LabeledContent("Password") {
                     SecureField(text: $password, prompt: Text("Required")) {
-                        Text("Password")
+                        Text("Password ")
                     }
                 }
                 
@@ -52,6 +52,17 @@ struct LoginView: View {
     
     private func signIn() {
         // check FIREBASE
+        
+        // if good -> navigate to main page
+            // say welcome and show some api stuff
+        // if not change LOGIN textbox to be red and bad!
+        return
+    }
+    
+    private func signUp() {
+        // navigate to new sign up page
+            // has go back button
+        // on submit navigate to main page
         return
     }
 }
