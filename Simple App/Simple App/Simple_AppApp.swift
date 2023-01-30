@@ -29,6 +29,7 @@ struct Simple_AppApp: App {
             RootView()
                 .environmentObject(PresentedView())
                 .environmentObject(GlobalUsername())
+                .environmentObject(ApiFact())
         }
     }
 }
