@@ -6,12 +6,13 @@
 //
 
 import SwiftUI
+import FirebaseDatabase
 
 struct SignUpView: View {
     
     @EnvironmentObject var presentedView: PresentedView
     
-    @StateObject var globalUname: GlobalUsername
+    @EnvironmentObject var globalUname: GlobalUsername
     @State private var username = ""
     @State private var password = ""
     
@@ -45,6 +46,8 @@ struct SignUpView: View {
                 Button("Create Profile", action: cprofile)
                     .buttonStyle(.bordered)
             }
+            Text("If the page doesn't change, the username is already taken.")
+                .padding(10)
             
         }
         .padding(20)
@@ -65,8 +68,25 @@ struct SignUpView: View {
             //if no then continue navigate
             //if yes then change label to alert user
         
-        globalUname.username = username
-        presentedView.currentView = .content
+        let ref = Database.database().reference()
+        ref.child(username).getData(completion:  { error, snapshot in
+          guard error == nil else {
+            print(error!.localizedDescription)
+            return;
+          }
+            let actual_pass = snapshot?.value as? String ?? "USER-DOES-NOT-EXIST";
+            
+            if actual_pass == "USER-DOES-NOT-EXIST" {
+                Database.database().reference().child(username).setValue(password)
+                globalUname.username = username
+                presentedView.currentView = .content
+            } else {
+                print("Username Is Already Taken")
+            }
+        });
+//
+//        globalUname.username = username
+//        presentedView.currentView = .content
     }
 }
 

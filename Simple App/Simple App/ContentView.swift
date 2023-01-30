@@ -11,10 +11,11 @@ struct ContentView: View {
     
     @EnvironmentObject var presentedView: PresentedView
     
-    @StateObject var globalUname: GlobalUsername
+    @EnvironmentObject var globalUname: GlobalUsername
     
     var body: some View {
-        Text("Content")
+        Text(globalUname.username + "'s Content would be shown here!")
+        Text("(If I hadn't spent sooo long on setting up Firebase and dealing with async swift closures haha!)").padding([.top, .horizontal], 20)
     }
 }
 

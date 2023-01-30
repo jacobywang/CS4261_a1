@@ -6,14 +6,14 @@
 //
 
 import SwiftUI
-
+import FirebaseDatabase
 
 
 struct LoginView: View {
     
     @EnvironmentObject var presentedView: PresentedView
+    @EnvironmentObject var globalUname: GlobalUsername
     
-    @StateObject var globalUname: GlobalUsername
     @State private var username = ""
     @State private var password = ""
     
@@ -61,14 +61,21 @@ struct LoginView: View {
         }
         
         // check FIREBASE
-        
-        // if good -> navigate to main page
-            // say welcome and show some api stuff
-        // if not change LOGIN textbox to be red and bad!
-        
-        //Navigate to content page
-        globalUname.username = username
-        presentedView.currentView = .content
+        let ref = Database.database().reference()
+        ref.child(username).getData(completion:  { error, snapshot in
+          guard error == nil else {
+            print(error!.localizedDescription)
+            return;
+          }
+            let actual_pass = snapshot?.value as? String ?? "USER-DOES-NOT-EXIST";
+            
+            if password == actual_pass {
+                globalUname.username = username
+                presentedView.currentView = .content
+            } else {
+                print("Invalid Credentials")
+            }
+        });
     }
     
     private func signUp() {

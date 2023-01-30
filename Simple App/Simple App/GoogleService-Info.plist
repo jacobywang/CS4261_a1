@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>374753972559-7auadi9ep65b7c130d8b6rba215n7h4q.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.374753972559-7auadi9ep65b7c130d8b6rba215n7h4q</string>
+	<key>API_KEY</key>
+	<string>AIzaSyA-NZqKdfgW5oTY9YOOKiGCNBCxQB2B69w</string>
+	<key>GCM_SENDER_ID</key>
+	<string>374753972559</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>Coding.Simple-App</string>
+	<key>PROJECT_ID</key>
+	<string>cs-4261-first-assignment</string>
+	<key>STORAGE_BUCKET</key>
+	<string>cs-4261-first-assignment.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:374753972559:ios:21335a3e6092e69ba8f53a</string>
+	<key>DATABASE_URL</key>
+	<string>https://cs-4261-first-assignment-default-rtdb.firebaseio.com</string>
+</dict>
+</plist>
