@@ -11,7 +11,9 @@ import SwiftUI
 struct Simple_AppApp: App {
     var body: some Scene {
         WindowGroup {
-            LoginView()
+            //LoginView()
+            RootView()
+                .environmentObject(PresentedView())
         }
     }
 }

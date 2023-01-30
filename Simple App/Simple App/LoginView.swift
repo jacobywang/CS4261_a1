@@ -11,11 +11,14 @@ import SwiftUI
 
 struct LoginView: View {
     
+    @EnvironmentObject var presentedView: PresentedView
+    
+    @StateObject var globalUname: GlobalUsername
     @State private var username = ""
     @State private var password = ""
-    @State private var isSignedUp = false
     
     var body: some View {
+        
         VStack {
             Image(systemName: "globe")
                 .imageScale(.large)
@@ -40,31 +43,38 @@ struct LoginView: View {
             Button("Sign In", action: signIn)
                 .buttonStyle(.bordered)
                 .padding([.bottom], 6)
+            
+
             LabeledContent("Create new account") {
-                Button("Sign Up") {
-                    isSignedUp = true
-                }
-            }.padding([.horizontal], 40)
+                Button("Sign Up", action: signUp)
+            }.padding([.horizontal], 45)
             
         }
         .padding(20)
+        
     }
     
     private func signIn() {
+        if username.count == 0 || password.count == 0 {
+            print("Username and password must not be empty [" + username + ", " + password + "]")
+            return
+        }
+        
         // check FIREBASE
         
         // if good -> navigate to main page
             // say welcome and show some api stuff
         // if not change LOGIN textbox to be red and bad!
-        return
+        
+        //Navigate to content page
+        globalUname.username = username
+        presentedView.currentView = .content
     }
     
     private func signUp() {
-        // navigate to new sign up page
-            // has go back button
-        // on submit navigate to main page
-        return
+        presentedView.currentView = .sup
     }
+    
 }
 
 
@@ -73,3 +83,107 @@ struct LoginView_Previews: PreviewProvider {
         LoginView()
     }
 }
+
+
+
+//
+//
+////
+////  ContentView.swift
+////  Simple App
+////
+////  Created by Jacob Wang on 1/29/23.
+////
+//
+//import SwiftUI
+//
+//
+//
+//struct LoginView: View {
+//
+//    @EnvironmentObject var presentedView: PresentedView
+//
+//    @State private var username = ""
+//    @State private var password = ""
+//    @State private var validSignIn = false
+//
+//    var body: some View {
+//
+//        NavigationView {
+//
+////            NavigationLink(destination: SignUpView()) {
+////                if (!validSignIn) {
+////                    EmptyView()
+////                } else {
+////                    SignUpView()
+////                }
+////
+////            }
+//
+//            VStack {
+//                Image(systemName: "globe")
+//                    .imageScale(.large)
+//                    .foregroundColor(.accentColor)
+//                Text("LOGIN")
+//                    .padding(10)
+//                VStack {
+//                    LabeledContent("Username") {
+//                        TextField(text: $username, prompt: Text("Required")) {
+//                            Text("Username")
+//                        }
+//                    }
+//                    LabeledContent("Password") {
+//                        SecureField(text: $password, prompt: Text("Required")) {
+//                            Text("Password ")
+//                        }
+//                    }
+//
+//                }
+//                .textFieldStyle(.roundedBorder)
+//                .padding(10)
+//                Button("Sign In", action: signIn)
+//                    .buttonStyle(.bordered)
+//                    .padding([.bottom], 6)
+//
+//
+//                LabeledContent("Create new account") {
+//                    NavigationLink(destination: SignUpView()){
+//                        Text("Sign Up")
+//                    }
+//                }.padding([.horizontal], 45)
+//
+//            }
+//            .padding(20)
+//
+////            NavigationLink(destination: isValidSignIn()){}
+//        }
+//    }
+//
+//    private func signIn() {
+//        // check FIREBASE
+//
+//        // if good -> navigate to main page
+//            // say welcome and show some api stuff
+//        // if not change LOGIN textbox to be red and bad!
+//
+//        validSignIn = true
+//
+//    }
+//
+//    @ViewBuilder
+//    private func isValidSignIn() -> some View {
+//        if validSignIn {
+//            SignUpView()
+//        } else {
+//            EmptyView()
+//        }
+//    }
+//
+//}
+//
+//
+//struct LoginView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        LoginView()
+//    }
+//}
