@@ -26,12 +26,12 @@ struct SignUpView: View {
                 .padding(10)
             VStack {
                 LabeledContent("Username") {
-                    TextField(text: $Username, prompt: Text("Required")) {
+                    TextField(text: $username, prompt: Text("Required")) {
                         Text("Username")
                     }
                 }
                 LabeledContent("Password") {
-                    SecureField(text: $Password, prompt: Text("Required")) {
+                    SecureField(text: $password, prompt: Text("Required")) {
                         Text("Password ")
                     }
                 }
